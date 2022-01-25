@@ -1,0 +1,13 @@
+const register = require('@babel/register');
+const { resolve, } = require('path');
+
+register({
+	extensions: [ '.js', '.ts', ],
+});
+
+module.exports = {
+	'config': resolve('db', 'config.js'),
+	'migrations-path': resolve('db', 'migration'),
+	'models-path': resolve('db', 'model'),
+	'seeders-path': resolve('db', 'seed'),
+};
