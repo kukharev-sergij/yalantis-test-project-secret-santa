@@ -20,8 +20,9 @@ const models = fs.readdirSync(modelsRootPath)
   })
 	.reduce((_, [name, model]) => Object.assign(_, {[name]: model}), {});
 
-for(const [name, model] of Object.entries(models)) {
-	model.associate?.(models);
+for (const model of Object.entries(models)) {
+	const [name, instance] = model;
+	instance?.associate?.(models);
 }
 
 export default {
