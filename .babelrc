@@ -18,7 +18,10 @@
 		],
 		[
 			"@babel/preset-typescript", {
-				"extensions": [ ".js", ".ts" ]
+				"extensions": [ ".js", ".ts" ],
+				"target": "es6",
+				"experimentalDecorators": true,
+				"emitDecoratorMetadata": true
 			}
 		]
 	]
