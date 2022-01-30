@@ -2,7 +2,7 @@ import { Model, } from 'sequelize';
 
 export const schema = 'public';
 export const modelName = 'game';
-export const tableName = 'game';
+export const tableName = modelName;
 export interface GameSettings {
 	giftsMaxAmount?: number;
 	giftsMinAmount?: number;
@@ -13,10 +13,9 @@ export function areSettings(value: GameSettings) {
 	return value instanceof Object;
 }
 
-export default (sequelize, DataTypes) => {
+export default ({ aliases, sequelize, DataTypes, }) => {
 	class Game extends Model {
-		static associate(models) {
-			// define association here
+		static associate({ aliases, models, }) {
 		}
 	};
 
@@ -49,7 +48,7 @@ export default (sequelize, DataTypes) => {
 			type: DataTypes.DATE,
 		},
 		deletedAt: {
-			allowNull: false,
+			allowNull: true,
 			field: 'deleted_at',
 			type: DataTypes.DATE,
 		},

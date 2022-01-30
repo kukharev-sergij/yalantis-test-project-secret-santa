@@ -1,4 +1,7 @@
-import { tableName, areSettings, } from '../model/game';
+import {
+	tableName,
+	areSettings,
+} from '../model/game';
 
 export async function up(queryInterface, Sequelize) {
 	await queryInterface.createTable(tableName, {
@@ -30,7 +33,7 @@ export async function up(queryInterface, Sequelize) {
 			type: Sequelize.DATE,
 		},
 		deletedAt: {
-			allowNull: false,
+			allowNull: true,
 			field: 'deleted_at',
 			type: Sequelize.DATE,
 		},
