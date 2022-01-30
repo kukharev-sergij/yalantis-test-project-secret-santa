@@ -1,5 +1,5 @@
 {
-  "name": "test-project",
+  "name": "yalantis-test-project-secret-santa",
   "version": "1.0.0",
   "main": "index.js",
   "author": "Sergej Kucharev <sergej.kucharev@gmail.com>",
@@ -18,20 +18,29 @@
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-typescript": "^7.16.7",
     "@babel/register": "^7.16.9",
+    "@types/node": "^17.0.12",
+    "@types/validator": "^13.7.1",
     "express": "^4.17.2",
     "express-async-errors": "^3.1.1",
     "http": "^0.0.1-security",
     "nodemon": "^2.0.15",
     "process": "^0.11.10",
+    "reflect-metadata": "^0.1.13",
     "sequelize": "^6.14.0",
+    "sequelize-typescript": "^2.1.2",
+    "sqlite": "4.0.23",
     "sqlite3": "^5.0.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.16.8",
     "sequelize-cli": "^6.4.1"
   },
-	"scripts": {
-		"start": "npx nodemon index.js",
-		"db:new:model": "npx sequelize-cli model:generate --name xxx --attributes id:number"
-	}
+  "scripts": {
+    "start": "npx nodemon index.js",
+    "db:new:model": "npx sequelize-cli model:generate --name xxx --attributes id:number",
+    "db:migrate": "npx sequelize-cli db:migrate",
+    "db:unmigrate:last": "npx sequelize-cli db:migrate:undo",
+    "db:unmigrate:all": "npx sequelize-cli db:migrate:undo:all",
+    "db:seed": "npx sequelize-cli db:seed"
+  }
 }
