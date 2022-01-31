@@ -16,7 +16,7 @@ export async function up(queryInterface, Sequelize) {
 			defaultValue: false,
 			type: Sequelize.BOOLEAN,
 		},
-		settigs: {
+		settings: {
 			allowNull: false,
 			defaultValue: {},
 			type: Sequelize.JSON,

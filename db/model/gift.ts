@@ -1,9 +1,9 @@
 import { Model, } from 'sequelize';
 import { tableName as tableNamePlayer, } from './player';
 
-export const schema = 'public';
-export const modelName = 'gift';
-export const tableName = modelName;
+export const schema = null;
+export const modelName = 'Gift';
+export const tableName = 'gift';
 export { tableNamePlayer, };
 export const nameLength = 100;
 export function isName(value: String) {

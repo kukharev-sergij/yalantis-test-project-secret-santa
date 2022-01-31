@@ -1,8 +1,8 @@
 import { Model, } from 'sequelize';
 
-export const schema = 'public';
-export const modelName = 'game';
-export const tableName = modelName;
+export const schema = null;
+export const modelName = 'Game';
+export const tableName = 'game';
 export interface GameSettings {
 	giftsMaxAmount?: number;
 	giftsMinAmount?: number;
@@ -31,7 +31,7 @@ export default ({ aliases, sequelize, DataTypes, }) => {
 			defaultValue: false,
 			type: DataTypes.BOOLEAN,
 		},
-		settigs: {
+		settings: {
 			allowNull: false,
 			defaultValue: {},
 			type: DataTypes.JSON,

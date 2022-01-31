@@ -1,9 +1,9 @@
 import { Model, } from 'sequelize';
 import { tableName as tableNameGame, } from './game';
 
-export const schema = 'public';
-export const modelName = 'player';
-export const tableName = modelName;
+export const schema = null;
+export const modelName = 'Player';
+export const tableName = 'player';
 export { tableNameGame, };
 export const nameLength = 100;
 export const surnameLength = 100;

@@ -2,16 +2,18 @@ import fs from 'fs';
 import { resolve, } from 'path';
 import process from 'process';
 import Sequelize from 'sequelize';
-import configs from './config';
+import * as configs from './config';
 
 const { env, } = process;
 const { DataTypes, } = Sequelize;
 const mode = env.NODE_ENV ?? 'development';
 const { database, username, password, ...config } = configs[mode];
-const sequelize = new Sequelize(database, username, password, config);
-
 const modelsRootPath = resolve(__dirname, 'model');
-const aliases = {
+
+export { Sequelize, };
+export const sequelize = new Sequelize(database, username, password, config);
+
+export const aliases = {
 	Game: {
 		as: 'game',
 	},
@@ -23,23 +25,18 @@ const aliases = {
 		as: 'gift',
 	},
 };
-const models = fs.readdirSync(modelsRootPath)
+
+export const models = fs.readdirSync(modelsRootPath)
   .filter(file => /^[^.~!].*?[.][jt]s$/.test(file))
   .map(file => {
 		const filePath = resolve(modelsRootPath, file);
-		const Model = require(filePath);
+		const { default: Model, } = require(filePath);
     const model = Model({ aliases, sequelize, DataTypes, });
 		return [model.name, model];
   })
 	.reduce((_, [name, model]) => Object.assign(_, {[name]: model}), {});
 
 for (const model of Object.entries(models)) {
-	const [name, instance] = model;
-	instance?.associate?.({ aliases, models, });
+	const [modelName, modelInstance] = model;
+	modelInstance?.associate?.({ aliases, models, modelName, modelInstance });
 }
-
-export default {
-	models,
-	sequelize,
-	Sequelize,
-};
